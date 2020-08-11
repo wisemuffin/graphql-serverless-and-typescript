@@ -18,6 +18,6 @@ sls logs -f funcName -t
 
 - sls typescript
 - sls serverless-offline
-- sls graphql-server-lambda
+- sls apollo-server-lambda
 
 - cdk

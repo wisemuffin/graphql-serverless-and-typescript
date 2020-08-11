@@ -12,6 +12,8 @@
     "log": "sls logs -f postSomeData -t"
   },
   "dependencies": {
+    "apollo-server-lambda": "^2.16.1",
+    "graphql": "^15.3.0",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {

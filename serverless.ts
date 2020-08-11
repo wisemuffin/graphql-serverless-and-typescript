@@ -62,6 +62,23 @@ const serverlessConfiguration: Serverless = {
         },
       ],
     },
+    graphql: {
+      handler: "graphql.graphqlHandler",
+      events: [
+        {
+          http: {
+            method: "post",
+            path: "graphql",
+          },
+        },
+        {
+          http: {
+            method: "get",
+            path: "graphql",
+          },
+        },
+      ],
+    },
   },
 };
 
