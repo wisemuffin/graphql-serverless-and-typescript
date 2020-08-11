@@ -13,3 +13,11 @@ from aws
 ```bash
 sls logs -f funcName -t
 ```
+
+# TODO
+
+- sls typescript
+- sls serverless-offline
+- sls graphql-server-lambda
+
+- cdk
