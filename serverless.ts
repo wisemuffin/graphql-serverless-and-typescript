@@ -2,7 +2,7 @@ import { Serverless } from "serverless/aws";
 
 const serverlessConfiguration: Serverless = {
   service: {
-    name: "graphql-serverless-and-cdk",
+    name: "graphql-serverless-and-typescript",
   },
   // app and org for use with dashboard.serverless.com
   org: "davidgg777",

@@ -1,3 +1,9 @@
+# design
+
+[inital architecture](https://www.youtube.com/watch?v=bqfEVhlE2Qw&t=509s)
+
+This example has both graphql end point and 3 rest lambda endpoints
+
 # Inital set up
 
 ```bash
