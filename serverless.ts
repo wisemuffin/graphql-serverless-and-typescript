@@ -2,7 +2,7 @@ import { Serverless } from "serverless/aws";
 
 const serverlessConfiguration: Serverless = {
   service: {
-    name: "graphql-serverless-and-typescript",
+    name: "graphql-serverless-and-typescript-wisemuffin",
   },
   // app and org for use with dashboard.serverless.com
   org: "davidgg777",
@@ -29,39 +29,6 @@ const serverlessConfiguration: Serverless = {
     },
   },
   functions: {
-    hello: {
-      handler: "handler.hello",
-      events: [
-        {
-          http: {
-            method: "get",
-            path: "hello",
-          },
-        },
-      ],
-    },
-    dave: {
-      handler: "handler.dave",
-      events: [
-        {
-          http: {
-            method: "get",
-            path: "dave",
-          },
-        },
-      ],
-    },
-    postSomeData: {
-      handler: "handler.postSomeData",
-      events: [
-        {
-          http: {
-            method: "post",
-            path: "postSomeData",
-          },
-        },
-      ],
-    },
     graphql: {
       handler: "graphql.graphqlHandler",
       events: [
