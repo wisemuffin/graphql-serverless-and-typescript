@@ -49,5 +49,25 @@ const Dynamo = {
 
     return data;
   },
+  update: async ({
+    tableName,
+    primaryKey,
+    primaryKeyValue,
+    updateKey,
+    updateValue,
+  }) => {
+    const params = {
+      TableName: tableName,
+      Key: { [primaryKey]: primaryKeyValue },
+      UpdateExpression: `set ${updateKey} = :updateValue`,
+      ExpressionAttributeValues: {
+        ":updateValue": updateValue,
+      },
+    };
+
+    const res = await documentClient.update(params).promise();
+
+    return res;
+  },
 };
 export default Dynamo;

@@ -11,6 +11,10 @@ to add [dynamodbOffline](https://www.youtube.com/watch?v=ul_85jfM0oo&list=LL7qNK
 sls dynamodb install
 ```
 
+# TODO
+
+how to handle errors in graphql
+
 # Inital set up
 
 ```bash

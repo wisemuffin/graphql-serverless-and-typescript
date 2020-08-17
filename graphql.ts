@@ -1,6 +1,7 @@
 const { ApolloServer, gql } = require("apollo-server-lambda");
 import createPlayerScore from "./src/resolvers/createPlayerScore";
 import getPlayerScore from "./src/resolvers/getPlayerScore";
+import updatePlayerScore from "./src/resolvers/updatePlayerScore";
 
 // const tableName = process.env.tableName;
 // Construct a schema, using GraphQL schema language
@@ -22,6 +23,7 @@ const typeDefs = gql`
   }
   type Mutation {
     createPlayerScore(player: PlayerInput!): Player!
+    updatePlayerScore(ID: String!, score: Int): Player!
   }
 `;
 
@@ -34,6 +36,7 @@ const resolvers = {
   },
   Mutation: {
     createPlayerScore,
+    updatePlayerScore,
   },
 };
 
