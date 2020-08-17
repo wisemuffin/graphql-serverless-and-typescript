@@ -2,20 +2,30 @@ import { Serverless } from "serverless/aws";
 
 const serverlessConfiguration: Serverless = {
   service: {
-    name: "graphql-serverless-and-typescript-wisemuffin",
+    name: "gql-sls-and-typescript-dynamodb",
   },
   // app and org for use with dashboard.serverless.com
   org: "davidgg777",
   app: "learning-serverless",
   frameworkVersion: ">=1.72.0",
   custom: {
+    tableName: "player-points",
     webpack: {
       webpackConfig: "./webpack.config.js",
       includeModules: true,
     },
+    dynamodb: {
+      stages: ["dev"],
+      start: { port: 8000, InMemory: true, migrate: true },
+      migration: { dir: "offline/migrations" },
+    },
   },
   // Add the serverless-webpack plugin
-  plugins: ["serverless-webpack", "serverless-offline"],
+  plugins: [
+    "serverless-webpack",
+    "serverless-offline",
+    "serverless-dynamodb-local",
+  ],
   provider: {
     name: "aws",
     runtime: "nodejs12.x",
@@ -26,6 +36,28 @@ const serverlessConfiguration: Serverless = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      tableName: "player-points",
+    },
+
+    iamRoleStatements: [
+      {
+        Effect: "Allow",
+        Action: ["dynamodb:*"],
+        Resource: "*",
+      },
+    ],
+  },
+  resources: {
+    Resources: {
+      MyDynamoDbTable: {
+        Type: "AWS::DynamoDB::Table",
+        Properties: {
+          TableName: "player-points",
+          AttributeDefinitions: [{ AttributeName: "ID", AttributeType: "S" }],
+          KeySchema: [{ AttributeName: "ID", KeyType: "HASH" }],
+          BillingMode: "PAY_PER_REQUEST",
+        },
+      },
     },
   },
   functions: {
