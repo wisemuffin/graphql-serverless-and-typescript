@@ -1,5 +1,5 @@
 {
-  "name": "graphql-serverless-and-cdk",
+  "name": "graphql-serverless-and-typescript",
   "version": "1.0.0",
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
