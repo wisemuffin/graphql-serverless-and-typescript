@@ -13,7 +13,10 @@ sls dynamodb install
 
 # TODO
 
-how to handle errors in graphql
+- table name from env
+- nodemon or just get serverless offline to actualy restart graphql server properly
+- how to handle errors in graphql
+- migrations
 
 # Inital set up
 
@@ -31,10 +34,59 @@ from aws
 sls logs -f funcName -t
 ```
 
-# TODO
+# example graphql
 
-- sls typescript
-- sls serverless-offline
-- sls apollo-server-lambda
+```graphql
+# Write your query or mutation here
+query q1 {
+  second
+}
 
-- cdk
+query q2 {
+  first
+}
+
+mutation createPlayer {
+  createPlayerScore(player: { ID: "2", name: "emma", score: 2, game: "uno" }) {
+    ID
+    name
+    score
+    game
+  }
+}
+
+mutation createPlayer1 {
+  createPlayerScore(
+    player: { ID: "1", name: "dave", score: 100, game: "uno" }
+  ) {
+    ID
+    name
+    score
+    game
+  }
+}
+
+query getPlayer {
+  getPlayerScore(ID: "2") {
+    name
+    score
+    game
+  }
+}
+
+mutation updateplayer {
+  updatePlayerScore(ID: "2", score: 63) {
+    ID
+    name
+    score
+  }
+}
+
+query getGameScores {
+  getGameScores(game: "uno") {
+    ID
+    name
+    score
+  }
+}
+```
