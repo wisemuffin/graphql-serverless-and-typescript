@@ -36,7 +36,7 @@ const serverlessConfiguration: Serverless = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
-      tableName: "player-points",
+      tableName: "${self:custom.tableName}",
     },
 
     iamRoleStatements: [
@@ -52,7 +52,7 @@ const serverlessConfiguration: Serverless = {
       MyDynamoDbTable: {
         Type: "AWS::DynamoDB::Table",
         Properties: {
-          TableName: "player-points",
+          TableName: "${self:custom.tableName}",
           AttributeDefinitions: [
             { AttributeName: "ID", AttributeType: "S" },
             { AttributeName: "game", AttributeType: "S" },

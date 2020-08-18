@@ -1,10 +1,10 @@
 import Dynamo from "../util/Dynamo";
-// const tableName = process.env.tableName;
+const tableName = process.env.tableName;
 
 const getGameScores = async (_parent, args, _context, _info) => {
   const { game } = args;
   const gamePlayers = await Dynamo.query({
-    tableName: "player-points",
+    tableName,
     index: "game-index",
     queryKey: "game",
     queryValue: game,

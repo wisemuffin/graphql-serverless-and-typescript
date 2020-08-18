@@ -13,10 +13,18 @@ sls dynamodb install
 
 # TODO
 
-- table name from env
 - nodemon or just get serverless offline to actualy restart graphql server properly
 - how to handle errors in graphql
 - migrations
+
+# dynamoDb
+
+- scan max 1mb then will return even if havent found all but you benefit from not having to set up secondary index.
+
+# why sls
+
+- individual function uploads (with webpack)
+- offline aws API gateway, lambda, dynamo development (faster iterations)
 
 # Inital set up
 
@@ -32,6 +40,16 @@ from aws
 
 ```bash
 sls logs -f funcName -t
+```
+
+# deployment
+
+## only deploy function (only if serverless.ts hasnt changed!)
+
+if we do graphql then there is only one lambda
+
+```bash
+sls deploy -f <func_name>
 ```
 
 # example graphql

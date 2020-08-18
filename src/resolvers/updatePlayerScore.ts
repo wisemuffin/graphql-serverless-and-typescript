@@ -1,11 +1,11 @@
 import Dynamo from "../util/Dynamo";
-// const tableName = process.env.tableName;
+const tableName = process.env.tableName;
 
 const updatePlayerScore = async (_parent, args, _context, _info) => {
   const { ID, score } = args;
 
   // check ID exists
-  const getPlayer = await Dynamo.get(ID, "player-points").catch((err) => {
+  const getPlayer = await Dynamo.get(ID, tableName).catch((err) => {
     console.log("error getting player", err);
     return null;
   });
