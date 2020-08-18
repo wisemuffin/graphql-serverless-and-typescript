@@ -1,4 +1,5 @@
 import { Serverless } from "serverless/aws";
+import { truncate } from "fs";
 
 const serverlessConfiguration: Serverless = {
   service: {
@@ -34,15 +35,31 @@ const serverlessConfiguration: Serverless = {
     apiGateway: {
       minimumCompressionSize: 1024,
     },
+    tracing: { lambda: true, apiGateway: true },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       tableName: "${self:custom.tableName}",
     },
-
     iamRoleStatements: [
       {
         Effect: "Allow",
-        Action: ["dynamodb:*"],
+        Action: [
+          "dynamodb:Query",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:GetItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:PutItem",
+          "dynamodb:Scan",
+          "dynamodb:UpdateItem",
+        ],
+        Resource: [
+          "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}",
+          "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}/*",
+        ],
+      },
+      {
+        Effect: "Allow",
+        Action: ["xray:PutTraceSegments", "xray:PutTelemetryRecords"],
         Resource: "*",
       },
     ],
@@ -73,6 +90,7 @@ const serverlessConfiguration: Serverless = {
   functions: {
     graphql: {
       handler: "graphql.graphqlHandler",
+      tracing: "PassThrough",
       events: [
         {
           http: {

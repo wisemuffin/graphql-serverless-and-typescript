@@ -10,7 +10,7 @@
     "module": "commonjs",
     "outDir": "lib"
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "serverless.js"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",

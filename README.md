@@ -13,6 +13,7 @@ sls dynamodb install
 
 # TODO
 
+- tracing x ray: in serverless.ts in provider. currently can only set manually and missing dynamodb tracking and annotations.
 - nodemon or just get serverless offline to actualy restart graphql server properly
 - how to handle errors in graphql
 - migrations
@@ -25,6 +26,33 @@ sls dynamodb install
 
 - individual function uploads (with webpack)
 - offline aws API gateway, lambda, dynamo development (faster iterations)
+
+# X-ray
+
+add around a sdk
+
+```javascript
+import * as AWSXRay from "aws-xray-sdk-core";
+import * as AWS from "aws-sdk";
+
+const s3 = AWSXRay.captureAWSClient(new AWS.s3());
+```
+
+add sub sections to test long running code
+
+```javascript
+import * as AWSXRay from "aws-xray-sdk-core";
+
+const segment = AWSXRay.getSegment();
+
+const subSegment = segment.addNewSubsegment("Epensive code");
+
+subSegment.annotation("userid", userid);
+
+expensive_fn();
+
+subSegment.close();
+```
 
 # Inital set up
 
