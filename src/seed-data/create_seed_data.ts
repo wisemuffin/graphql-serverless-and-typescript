@@ -6,6 +6,7 @@ const followersPerUser = 2;
 
 const udata = [];
 const tdata = [];
+const pdata = [];
 const handleNames = [];
 
 faker.seed(1000);
@@ -74,10 +75,29 @@ for (let i = 0; i < handleNames.length; i++) {
 
     tdata.push(tweetInfo);
   }
+
+  const id = faker.random.uuid();
+  const game = faker.hacker.phrase();
+  const playerID = faker.random.uuid();
+
+  //create player info
+  const playerInfo = {
+    ID: id,
+    name: name,
+    game: faker.commerce.color(),
+    playerID: playerID,
+    score: faker.random.number({
+      min: 1,
+      max: 50,
+    }),
+  };
+
+  pdata.push(playerInfo);
 }
 
 const ufile = "Users.json";
 const tfile = "Tweets.json";
+const pfile = "Players.json";
 
 jsonfile
   .writeFile(ufile, udata)
@@ -88,6 +108,13 @@ jsonfile
 
 jsonfile
   .writeFile(tfile, tdata)
+  .then((res) => {
+    console.log("Write complete");
+  })
+  .catch((error) => console.error(error));
+
+jsonfile
+  .writeFile(pfile, pdata)
   .then((res) => {
     console.log("Write complete");
   })
