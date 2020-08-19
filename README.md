@@ -136,3 +136,34 @@ query getGameScores {
   }
 }
 ```
+
+# subscriptions graphql & lambda
+
+## aws-lambda-graphql
+
+in alpha 19/8/2020 [aws-lambda-graphql](https://github.com/michalkvasnicak/aws-lambda-graphql)
+
+uses:
+
+- dynamodb streams
+- dynamodb to remeber state (since lambda is stateless)
+
+have this working in
+
+```bash
+cd ~/aws/aws-lambda-graphql-pubsub/packages
+```
+
+make sure to start server before client. Can also have issue with websocket already taken (had to restart)
+
+## issues with apsync
+
+khaledosman commented on Oct 5, 2019 [issue](https://github.com/apollographql/apollo-server/issues/2129)
+
+AppSync subscriptions use API Gateway sockets which also has its own limitations like:
+a. Maximum 2 hours connection duration then timeout
+b. custom @aws_subscribe directive in your graphql schema <-- vendor lockin
+c. 10 minutes idle connection timeout
+d. There’s no way to broadcast messages to all connected clients with one API call. you need to make an API call to AWS for each connection you want to send a message to. Publishing a single update to 1m clients requires fetching all 1m connection IDs out of the database and making 1m API calls which is slow and unscalable, unless you use SQS and lambdas to defer the logic, which adds even more latency due to the extra roundtrips.
+e. Connection metadata needs to be stored in a database, This means that for every connection and disconnection, a Lambda needs to be run. to store information about who connects/disconnects in a database which makes it stateful, adds extra roundtrips/latency and makes it less scalable for a big number of users as it can easily hit lambda/API gateway execution limits.
+I believe the only way to do a proper scalable graphql server setup in AWS is to create your own websocket server via an ECS or use PubNub, use an external redis cluster like redislabs or also create your own via ECS, and you can use lambdas for the apollo-server setup with a database of your choice. and manually connect/publish to your websocket server for subscriptions. The AWS solutions are not really well thought through IMO.

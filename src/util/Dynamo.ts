@@ -2,24 +2,24 @@ import * as AWSXRay from "aws-xray-sdk";
 let AWS;
 if (process.env._X_AMZN_TRACE_ID) {
   AWS = AWSXRay.captureAWS(require("aws-sdk"));
+
+  //testingout x ray
+  const segment = AWSXRay.getSegment();
+
+  const subSegment = segment.addNewSubsegment("Epensive code");
+
+  subSegment.addAnnotation("what up", "DAVES UP");
+
+  const adder = () => {
+    1 + 1;
+  };
+  adder();
+
+  subSegment.close();
 } else {
   console.log("Serverless Offline detected; skipping AWS X-Ray setup");
   AWS = require("aws-sdk");
 }
-
-//testingout x ray
-const segment = AWSXRay.getSegment();
-
-const subSegment = segment.addNewSubsegment("Epensive code");
-
-subSegment.addAnnotation("what up", "DAVES UP");
-
-const adder = () => {
-  1 + 1;
-};
-adder();
-
-subSegment.close();
 
 let options = {};
 if (process.env.IS_OFFLINE) {
