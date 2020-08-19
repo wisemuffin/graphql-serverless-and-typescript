@@ -1,6 +1,6 @@
 import * as faker from "faker";
 import * as jsonfile from "jsonfile";
-const numUsers = 10;
+const numUsers = 1000;
 const tweetsPerUser = 5;
 const followersPerUser = 2;
 
@@ -78,7 +78,12 @@ for (let i = 0; i < handleNames.length; i++) {
 
   const id = faker.random.uuid();
   const game = faker.hacker.phrase();
-  const playerID = faker.random.uuid();
+  const playerID = faker.random
+    .number({
+      min: 1,
+      max: 10,
+    })
+    .toString();
 
   //create player info
   const playerInfo = {
