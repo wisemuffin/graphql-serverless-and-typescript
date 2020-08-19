@@ -11,3 +11,6 @@ jspm_packages
 .webpack
 
 .env
+
+# faker data
+/src/seed-data/*.json

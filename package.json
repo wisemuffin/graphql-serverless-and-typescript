@@ -9,7 +9,9 @@
     "deploy:prod": "sls deploy --stage prod",
     "destroy": "sls remove",
     "offline": "sls offline start --location .",
-    "log": "sls logs -f postSomeData -t"
+    "log": "sls logs -f postSomeData -t",
+    "dynamodb-generate-seed-data": "cd src/seed-data && node -r ts-node/register  ./create_seed_data.ts",
+    "dynamodb-insert-seed-data-prod": "src/seed-data && node -r ts-node/register  ./insert_seed_data_prod.ts"
   },
   "dependencies": {
     "apollo-server-lambda": "^2.16.1",
@@ -20,9 +22,13 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
+    "@types/faker": "^4.1.12",
+    "@types/jsonfile": "^6.0.0",
     "@types/node": "^14.0.27",
     "@types/serverless": "^1.72.5",
+    "faker": "^4.1.0",
     "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "jsonfile": "^6.0.1",
     "nodemon": "^2.0.4",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.5.0",
