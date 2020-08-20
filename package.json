@@ -11,7 +11,8 @@
     "offline": "sls offline start --location .",
     "log": "sls logs -f postSomeData -t",
     "dynamodb-generate-seed-data": "cd src/seed-data && node -r ts-node/register  ./create_seed_data.ts",
-    "dynamodb-insert-seed-data-offline": "cd src/seed-data && export IS_OFFLINE=true && node -r ts-node/register  ./insert_seed_data.ts"
+    "dynamodb-insert-seed-data:offline": "cd src/seed-data && export IS_OFFLINE=true && node -r ts-node/register  ./insert_seed_data.ts",
+    "dynamodb-insert-seed-data:prod": "cd src/seed-data && node -r ts-node/register  ./insert_seed_data.ts"
   },
   "dependencies": {
     "apollo-server-lambda": "^2.16.1",

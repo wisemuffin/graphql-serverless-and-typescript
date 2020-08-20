@@ -21,7 +21,7 @@ const updatePlayerScore = async (_parent, args, _context, _info) => {
   });
 
   // get updated player
-  const getUpdatedPlayer = await Dynamo.get(ID, "player-points");
+  const getUpdatedPlayer = await Dynamo.get(ID, tableName);
 
   return getUpdatedPlayer;
 };

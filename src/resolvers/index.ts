@@ -3,6 +3,7 @@ import getPlayerScore from "./getPlayerScore";
 import updatePlayerScore from "./updatePlayerScore";
 import getGameScores from "./getGameScores";
 import getGamesForPlayer from "./getGamesForPlayer";
+import deletePlayerScore from "./deletePlayerScore";
 
 // Provide resolver functions for your schema fields
 const resolvers = {
@@ -16,6 +17,7 @@ const resolvers = {
   Mutation: {
     createPlayerScore,
     updatePlayerScore,
+    deletePlayerScore,
   },
 };
 

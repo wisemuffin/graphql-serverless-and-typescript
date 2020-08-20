@@ -1,8 +1,9 @@
 import * as AWSXRay from "aws-xray-sdk";
+import * as AWSSDK from "aws-sdk";
+
 let AWS;
 if (process.env._X_AMZN_TRACE_ID) {
   AWS = AWSXRay.captureAWS(require("aws-sdk"));
-
   //testingout x ray
   const segment = AWSXRay.getSegment();
 
@@ -28,7 +29,9 @@ if (process.env.IS_OFFLINE) {
     endpoint: "http://localhost:8000",
   };
 }
-const documentClient = new AWS.DynamoDB.DocumentClient(options);
+const documentClient: AWSSDK.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(
+  options
+);
 
 const Dynamo = {
   async get(ID, TableName) {
@@ -113,5 +116,14 @@ const Dynamo = {
 
     return res.Items || [];
   },
+  delete: async ({ tableName, ID }) => {
+    const params: AWSSDK.DynamoDB.DocumentClient.DeleteItemInput = {
+      TableName: tableName,
+      Key: { ID },
+    };
+    const res = await documentClient.delete(params).promise();
+    return ID;
+  },
 };
+
 export default Dynamo;

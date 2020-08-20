@@ -19,12 +19,13 @@ const typeDefs = gql`
     first: String
     second: String
     getPlayerScore(ID: String!): Player!
-    getGameScores(game: String!): [Player]
-    getGamesForPlayer(playerID: String!, minScore: Int): [Player]
+    getGameScores(game: String!): [Player!]
+    getGamesForPlayer(playerID: String!, minScore: Int): [Player!]
   }
   type Mutation {
     createPlayerScore(player: PlayerInput!): Player!
     updatePlayerScore(ID: String!, score: Int!): Player!
+    deletePlayerScore(ID: String!): Player!
   }
 `;
 

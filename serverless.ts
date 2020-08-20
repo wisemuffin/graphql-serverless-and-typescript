@@ -96,12 +96,14 @@ const serverlessConfiguration: Serverless = {
           http: {
             method: "post",
             path: "graphql",
+            cors: true,
           },
         },
         {
           http: {
             method: "get",
             path: "graphql",
+            cors: true,
           },
         },
       ],
