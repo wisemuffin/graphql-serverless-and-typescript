@@ -13,6 +13,7 @@ sls dynamodb install
 
 # TODO
 
+- okta integration -> done backend, now need to re deploy and need to send header: Authorization: Bearer
 - tracing x ray: in serverless.ts in provider. currently can only set manually and missing dynamodb tracking and annotations.
 - nodemon or just get serverless offline to actualy restart graphql server properly
 - how to handle errors in graphql

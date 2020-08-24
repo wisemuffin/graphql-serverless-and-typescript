@@ -39,6 +39,10 @@ const serverlessConfiguration: Serverless = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       tableName: "${self:custom.tableName}",
+      OKTA_ORG_URL: process.env.OKTA_ORG_URL,
+      OKTA_CLIENT_ID: process.env.OKTA_CLIENT_ID,
+      OKTA_CLIENT_SECRET: process.env.OKTA_CLIENT_SECRET,
+      OKTA_TOKEN: process.env.OKTA_TOKEN,
     },
     iamRoleStatements: [
       {
