@@ -4,7 +4,6 @@ const {
   AuthenticationError,
 } = require("apollo-server-lambda");
 require("dotenv").config();
-const uuid = require("uuidv4");
 
 import resolvers from "./src/resolvers";
 import typeDefs from "./src/schema";

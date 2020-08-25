@@ -19,6 +19,18 @@ sls dynamodb install
 - how to handle errors in graphql
 - migrations
 
+# bugs
+
+need to uncomment these env in serverless.ts.
+this works fine in prod, but not in dev?
+
+```javascript
+// OKTA_ORG_URL: process.env.OKTA_ORG_URL,
+// OKTA_CLIENT_ID: process.env.OKTA_CLIENT_ID,
+// OKTA_CLIENT_SECRET: process.env.OKTA_CLIENT_SECRET,
+// OKTA_TOKEN: process.env.OKTA_TOKEN,
+```
+
 # dynamoDb
 
 - scan max 1mb then will return even if havent found all but you benefit from not having to set up secondary index.
