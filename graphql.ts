@@ -20,6 +20,11 @@ const userInfo = async (headers) => {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  engine: {
+    reportSchema: true,
+    variant: "current",
+    sendReportsImmediately: true,
+  },
   formatError: (error) => {
     console.log(error);
     return error;
