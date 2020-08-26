@@ -27,6 +27,7 @@ const typeDefs = gql`
     getPlayerScore(ID: String!): Player!
     getGameScores(game: String!): [Player!]
     getGamesForPlayer(playerID: String!, minScore: Int): [Player!]
+    getAllGamesAnyPlayers: [Player!]
   }
   type Mutation {
     login(username: String!, password: String!): Authentication
