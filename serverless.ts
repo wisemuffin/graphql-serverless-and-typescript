@@ -1,11 +1,6 @@
 import { Serverless } from "serverless/aws";
 import { truncate } from "fs";
 
-const OKTA_ORG_URL = process.env.OKTA_ORG_URL;
-const OKTA_CLIENT_ID = process.env.OKTA_CLIENT_ID;
-const OKTA_CLIENT_SECRET = process.env.OKTA_CLIENT_SECRET;
-const OKTA_TOKEN = process.env.OKTA_TOKEN;
-
 const serverlessConfiguration: Serverless = {
   service: {
     name: "gql-sls-and-typescript-dynamodb",

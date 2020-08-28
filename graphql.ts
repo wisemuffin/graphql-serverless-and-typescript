@@ -1,9 +1,4 @@
-const {
-  ApolloServer,
-  gql,
-  AuthenticationError,
-} = require("apollo-server-lambda");
-require("dotenv").config();
+import { ApolloServer, gql, AuthenticationError } from "apollo-server-lambda";
 
 import resolvers from "./src/resolvers";
 import typeDefs from "./src/schema";
@@ -22,7 +17,7 @@ const server = new ApolloServer({
   resolvers,
   engine: {
     reportSchema: true,
-    variant: "current",
+    // variant: "current",
     sendReportsImmediately: true,
   },
   formatError: (error) => {

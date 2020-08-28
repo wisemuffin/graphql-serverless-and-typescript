@@ -20,6 +20,7 @@
     "apollo-server-lambda": "^2.16.1",
     "aws-sdk": "^2.734.0",
     "aws-xray-sdk": "^3.1.0",
+    "aws-xray-sdk-core": "^3.1.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
     "node-fetch": "2.6.0",

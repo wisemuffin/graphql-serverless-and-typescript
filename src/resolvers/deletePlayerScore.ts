@@ -2,6 +2,10 @@ const { AuthenticationError } = require("apollo-server-lambda");
 import Dynamo from "../util/Dynamo";
 const tableName = process.env.tableName;
 
+const AWSXRay = require("aws-xray-sdk-core");
+const AWS = AWSXRay.captureAWS(require("aws-sdk"));
+AWSXRay.captureHTTPsGlobal(require("https"));
+
 const deletePlayerScore = async (_parent, args, context, _info) => {
   console.log("delete context: ", JSON.stringify(context));
   if (!context.user)
