@@ -6,8 +6,8 @@ const tableName = process.env.tableName;
 // AWSXRay.captureHTTPsGlobal(require("https"));
 
 import * as AWSXRay from "aws-xray-sdk-core";
-import * as http from "http";
-AWSXRay.captureHTTPsGlobal(http, true);
+import * as https from "https";
+AWSXRay.captureHTTPsGlobal(https, true);
 
 const getAllGamesAnyPlayers = async (_parent, args, _context, _info) => {
   console.log("_X_AMZN_TRACE_ID: ", process.env._X_AMZN_TRACE_ID);
