@@ -1,3 +1,7 @@
+// require('dotenv').config()
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { ApolloServer, gql, AuthenticationError } from "apollo-server-lambda";
 
 import resolvers from "./src/resolvers";

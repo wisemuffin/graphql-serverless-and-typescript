@@ -1,6 +1,8 @@
 import * as AWS from "aws-sdk";
 
 console.log("process.env._X_AMZN_TRACE_ID: ", process.env._X_AMZN_TRACE_ID);
+console.log("process.env.OKTA_ORG_URL: ", process.env.OKTA_ORG_URL);
+console.log("process.env.IS_OFFLINE: ", process.env.IS_OFFLINE);
 
 let options = {};
 
