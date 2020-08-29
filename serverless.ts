@@ -1,5 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { Serverless } from "serverless/aws";
-import { truncate } from "fs";
 
 const serverlessConfiguration: Serverless = {
   service: {

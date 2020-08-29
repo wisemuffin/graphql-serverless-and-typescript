@@ -4,7 +4,13 @@ const tableName = process.env.tableName;
 
 import * as AWSXRay from "aws-xray-sdk-core";
 import * as https from "https";
-AWSXRay.captureHTTPsGlobal(https, true);
+
+if (process.env._X_AMZN_TRACE_ID) {
+  AWSXRay.captureHTTPsGlobal(https, true);
+  const segment = AWSXRay.getSegment();
+  const subSegment = segment.addNewSubsegment("Delete Segment");
+  subSegment.addAnnotation("what up", "delete me baby");
+}
 
 const deletePlayerScore = async (_parent, args, context, _info) => {
   console.log("delete context: ", JSON.stringify(context));
