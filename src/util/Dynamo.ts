@@ -1,35 +1,25 @@
-import * as AWSXRay from "aws-xray-sdk";
-import * as AWSSDK from "aws-sdk";
+import * as AWS from "aws-sdk";
 
-let AWS;
-if (process.env._X_AMZN_TRACE_ID) {
-  AWS = AWSXRay.captureAWS(require("aws-sdk"));
-  //testingout x ray
-  const segment = AWSXRay.getSegment();
-
-  const subSegment = segment.addNewSubsegment("Epensive code");
-
-  subSegment.addAnnotation("what up", "DAVES UP");
-
-  const adder = () => {
-    1 + 1;
-  };
-  adder();
-
-  subSegment.close();
-} else {
-  console.log("Serverless Offline detected; skipping AWS X-Ray setup");
-  AWS = require("aws-sdk");
-}
+console.log("process.env._X_AMZN_TRACE_ID: ", process.env._X_AMZN_TRACE_ID);
 
 let options = {};
+
 if (process.env.IS_OFFLINE) {
   options = {
     region: "localhost",
     endpoint: "http://localhost:8000",
   };
 }
-const documentClient: AWSSDK.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(
+
+if (process.env.JEST_WORKER_ID) {
+  options = {
+    endpoint: "http://localhost:8000",
+    region: "local-env",
+    sslEnabled: false,
+  };
+}
+
+const documentClient: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(
   options
 );
 
@@ -117,7 +107,7 @@ const Dynamo = {
     return res.Items || [];
   },
   delete: async ({ tableName, ID }) => {
-    const params: AWSSDK.DynamoDB.DocumentClient.DeleteItemInput = {
+    const params: AWS.DynamoDB.DocumentClient.DeleteItemInput = {
       TableName: tableName,
       Key: { ID },
     };
