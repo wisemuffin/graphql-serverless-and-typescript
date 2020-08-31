@@ -21,12 +21,14 @@ const serverlessConfiguration: Serverless = {
       start: { port: 8000, InMemory: true, migrate: true },
       migration: { dir: "offline/migrations" },
     },
+    scripts: { hooks: { "aws:common:validate:validate": `yarn test` } },
   },
   // Add the serverless-webpack plugin
   plugins: [
     "serverless-webpack",
     "serverless-offline",
     "serverless-dynamodb-local",
+    "serverless-plugin-scripts",
   ],
   provider: {
     name: "aws",
