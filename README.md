@@ -40,6 +40,20 @@ this works fine in prod, but not in dev?
 - individual function uploads (with webpack)
 - offline aws API gateway, lambda, dynamo development (faster iterations)
 
+# testing
+
+jest
+
+## mocking - dynamodb
+
+add schema to jest-dynamodb-config.js (from serverless.ts) but update table name
+
+then run jest
+
+```bash
+yarn test
+```
+
 # X-ray
 
 add around a sdk
