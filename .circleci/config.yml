@@ -14,7 +14,7 @@ jobs:
       - run:
           command: ./.circleci/install-credentials.sh
       - run:
-          command: yarn deploy:prod
+          command: yarn test
 
 workflows:
   build-and-deploy:
