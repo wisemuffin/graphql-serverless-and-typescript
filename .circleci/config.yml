@@ -24,4 +24,4 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - CHANGE_ONCE_TESTs_WORK_ON_CIRC_CI
