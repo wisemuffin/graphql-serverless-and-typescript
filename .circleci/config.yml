@@ -8,13 +8,14 @@ jobs:
     steps:
       - checkout
       - run:
-          command: sudo npm i -g serverless yarn@latest
+          command: sudo npm i -g serverless
       - run:
           command: yarn install
       - run:
           command: ./.circleci/install-credentials.sh
       - run:
           command: yarn test
+          debug: true
 
 workflows:
   build-and-deploy:
